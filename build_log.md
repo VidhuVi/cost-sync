@@ -2,20 +2,19 @@
 **Builder Name**: Vidhu P Vinod
 
 ## 1. What counts as 'too expensive'?
-The calculator implements a strict two-tier expense threshold based on typical enterprise cost modeling:
-- **High Cost Warning (> $1,000)**: Any meeting exceeding $1,000 total cost triggers a `WARN` state. This threshold is chosen because regular synchronization meetings shouldn't cost the equivalent of a substantial capital expenditure. It prompts the organizer to consider if every attendee is strictly necessary.
-- **Expensive Status Update Reject (> $500 w/o action verbs)**: If a meeting costs more than $500 and the agenda lacks strong action verbs (e.g., decide, resolve, approve), it is deemed an "Expensive Status Update" and rejected (`REJECT`). Status updates should be handled asynchronously to save company time.
+I decided to set two price thresholds to warn users about expensive meetings:
+- **Over $1,000**: This triggers a simple warning. A single meeting costing over a thousand dollars is a big investment, so it prompts the organizer to double-check if everyone really needs to be there.
+- **Over $500 with a vague agenda**: If a meeting costs more than $500 and the agenda doesn't show a clear goal (missing action words like "decide", "resolve", or "approve"), the app rejects it. High-cost meetings should be for making decisions, not just giving status updates that could easily be an email.
 
 ## 2. What to do for a part-time person?
-Part-time employees are evaluated on a prorated basis relative to their hourly cost to the company, identical to full-time employees in this calculator. 
-- **Rationale:** A meeting consumes *time*. Whether an employee works 20 hours or 40 hours a week, the hour spent in a meeting has a direct, calculable cost (`hourlyRate`). 
-- **Implementation:** The user can input part-time employees simply by adding a custom participant (or selecting a role) with their specific prorated hourly rate. The cost is calculated universally as `(totalHourlyRate / 60) * durationInMinutes`.
+I decided to treat part-time workers the exact same as full-time workers by looking strictly at their hourly rate. 
+Since a meeting consumes time regardless of how many hours a week someone works, their cost to the company for that specific hour is all that matters. Users can simply input their specific hourly rate into the calculator.
 
 ## 3. Whether currency or timezone matters?
-- **Currency:** The calculator is currently currency-agnostic on the backend, though the UI presents the cost in a generic dollar (`$`) format for familiarity. The fundamental logic (thresholds of 500 and 1000) represents a generalized unit of value. In a multi-national deployment, currency conversion would be required if participants are paid in different currencies, but for this MVP, all inputs are assumed to share a base currency.
-- **Timezone:** Timezones do not affect the *cost calculation* or the *ROI recommendation engine*, as cost is purely a function of duration and rate. However, timezones *would* matter for the integration with calendar APIs (to actually send the invite) and for historical tracking. Currently, the `createdAt` timestamp is stored as a standardized ISO 8601 string in UTC to prevent timezone misalignment in the database.
+- **Currency**: For this version, I kept it simple and assumed everyone is using the same base currency (US Dollars). Currency conversion isn't needed unless the company pays employees in multiple different currencies.
+- **Timezone**: Timezones do not matter for calculating the cost, because cost is only based on the length of the meeting and the hourly rate. To keep the database clean and prevent errors when viewing the history page from different locations, I save all meeting times in a standard global format (UTC).
 
 ## 4. What the agenda text should be judged on?
-The agenda is judged on two primary vectors to enforce "meeting hygiene":
-1. **Length (The "Vague Agenda" Rule):** If an agenda is present but shorter than 10 characters, it triggers a `WARN`. Extremely short agendas (e.g., "sync", "chat") indicate a lack of preparation and usually result in unstructured, unproductive time.
-2. **Actionability (The "Status Update" Rule):** For meetings costing over $500, the agenda is scanned for "action verbs" (decide, resolve, approve, finalize, vote, plan). If none are found, the meeting is rejected. The hypothesis is that expensive meetings should be for *decision making* or *complex problem solving*, not simply reading out status updates that could be an email or Slack thread.
+I programmed the app to judge the agenda on two simple rules to enforce good meeting habits:
+- **Length**: If the agenda is shorter than 10 characters (like just typing "sync" or "chat"), the app gives a warning. Meetings need clear, descriptive topics.
+- **Action Words**: For expensive meetings (over $500), the app actively looks for action verbs like "decide", "resolve", "approve", "vote", or "finalize". If it can't find them, it assumes it's a status update meeting and rejects it.

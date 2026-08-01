@@ -169,35 +169,35 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-stack-sm mb-stack-md">
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
-                onClick={() => addAttendee('Engineer', 2000)}
+                onClick={() => addAttendee('Engineer', 525)}
               >
                 <Code className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Engineer</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹2,000/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹525/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
-                onClick={() => addAttendee('Manager', 2500)}
+                onClick={() => addAttendee('Manager', 800)}
               >
                 <Badge className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Manager</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹2,500/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹800/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
-                onClick={() => addAttendee('Designer', 1800)}
+                onClick={() => addAttendee('Designer', 425)}
               >
                 <Palette className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Designer</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹1,800/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹425/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
-                onClick={() => addAttendee('Executive', 6000)}
+                onClick={() => addAttendee('Executive', 2500)}
               >
                 <Gem className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Executive</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹6,000/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹2,500/hr</span>
               </button>
             </div>
             <div className="relative">
@@ -254,7 +254,7 @@ export default function Home() {
               <span className="font-label-md text-label-md text-on-surface-variant mb-stack-sm">Cost Scaler</span>
               <div className="relative flex-grow min-h-[140px] border-l-2 border-b-2 border-outline-variant/30 flex items-end px-stack-sm">
                 <div className="flex-1 flex gap-2 items-end h-full w-full">
-                  <div className="flex-1 bg-primary rounded-t-sm transition-all duration-1000 ease-out max-h-full" style={{ height: `${Math.min(100, (totalCost / 40000) * 100)}%` }}></div>
+                  <div className="flex-1 bg-primary rounded-t-sm transition-all duration-1000 ease-out max-h-full" style={{ height: `${Math.min(100, (totalCost / 20000) * 100)}%` }}></div>
                 </div>
               </div>
             </div>

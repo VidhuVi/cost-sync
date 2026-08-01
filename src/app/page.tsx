@@ -24,6 +24,17 @@ export default function Home() {
   const [isSaving, setIsSaving] = useState(false)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   
+  const [isEditingDuration, setIsEditingDuration] = useState(false)
+  const [tempDuration, setTempDuration] = useState('')
+
+  const handleDurationSubmit = () => {
+    const val = parseInt(tempDuration)
+    if (!isNaN(val) && val >= 0) {
+      updateDuration(val)
+    }
+    setIsEditingDuration(false)
+  }
+  
   const handleSave = async () => {
     if (attendees.length === 0 || meetingContext.durationInMinutes === 0) {
       setToastMessage("Please add attendees and set a duration.")
@@ -236,7 +247,28 @@ export default function Home() {
             <div className="mb-stack-lg">
               <div className="flex justify-between items-center mb-unit">
                 <span className="font-label-md text-label-md text-on-surface-variant">Meeting Length</span>
-                <span className="font-headline-md text-headline-md text-primary">{meetingContext.durationInMinutes}m</span>
+                {isEditingDuration ? (
+                  <input
+                    type="number"
+                    autoFocus
+                    className="font-headline-md text-headline-md text-primary w-20 text-right bg-transparent border-b-2 border-primary/50 focus:border-primary outline-none transition-colors"
+                    value={tempDuration}
+                    onChange={(e) => setTempDuration(e.target.value)}
+                    onBlur={handleDurationSubmit}
+                    onKeyDown={(e) => e.key === 'Enter' && handleDurationSubmit()}
+                  />
+                ) : (
+                  <span 
+                    className="font-headline-md text-headline-md text-primary cursor-pointer hover:underline underline-offset-4 decoration-primary/30 transition-all"
+                    onDoubleClick={() => {
+                      setTempDuration(meetingContext.durationInMinutes.toString())
+                      setIsEditingDuration(true)
+                    }}
+                    title="Double click to edit manually"
+                  >
+                    {meetingContext.durationInMinutes}m
+                  </span>
+                )}
               </div>
               <input 
                 max="240" min="0" step="15" type="range" 

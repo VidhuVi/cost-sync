@@ -43,7 +43,7 @@ export function evaluateMeetingROI(cost: number, meetingContext: MeetingContext,
   const lowerAgenda = trimmedAgenda.toLowerCase();
   const hasActionVerb = actionVerbs.some(verb => lowerAgenda.includes(verb));
   
-  if (cost > 500 && !hasActionVerb) {
+  if (cost > 10000 && !hasActionVerb) {
     return {
       status: RecommendationStatus.REJECT,
       message: "Expensive meeting for a status update. Use async communication instead."
@@ -51,7 +51,7 @@ export function evaluateMeetingROI(cost: number, meetingContext: MeetingContext,
   }
 
   // Rule 4: High Cost Threshold
-  if (cost > 1000) {
+  if (cost > 20000) {
     return {
       status: RecommendationStatus.WARN,
       message: "Highly expensive meeting. Ensure every attendee is strictly necessary."

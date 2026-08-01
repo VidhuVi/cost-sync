@@ -9,8 +9,8 @@ Easily add attendees by their role (Engineer, Manager, Designer, Executive) and 
 
 ### 2. Value Assessment Engine (Part B)
 A built-in logic engine evaluates the meeting's Return on Investment (ROI) based on two primary factors:
-*   **Total Cost Thresholds**: Meetings costing over ₹1,000 trigger a `WARN` flag, prompting organizers to reconsider the attendee list.
-*   **Agenda Hygiene**: For meetings costing over ₹500, the provided agenda is strictly analyzed. If it lacks strong action verbs (e.g., *decide, resolve, approve, vote*), the meeting is flagged as a `REJECT`. This prevents expensive, unstructured status updates that could simply be an email.
+*   **Total Cost Thresholds**: Meetings costing over ₹20,000 trigger a `WARN` flag, prompting organizers to reconsider the attendee list.
+*   **Agenda Hygiene**: For meetings costing over ₹10,000, the provided agenda is strictly analyzed. If it lacks strong action verbs (e.g., *decide, resolve, approve, vote*), the meeting is flagged as a `REJECT`. This prevents expensive, unstructured status updates that could simply be an email.
 
 ### 3. Persistent History (Part C)
 Approved meetings can be saved directly into a local database. The **History** dashboard allows users to review past estimated meetings, their agendas, and their total financial footprint on the company.

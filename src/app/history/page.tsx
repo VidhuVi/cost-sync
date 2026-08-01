@@ -1,7 +1,7 @@
 import { getHistoryAction } from '@/app/actions'
 import Link from 'next/link'
 import { Settings, UserCircle, Users, Clock, AlertCircle, CheckCircle, XCircle } from 'lucide-react'
-
+import { ThemeToggle } from '@/components/theme-toggle'
 export default async function HistoryPage() {
   const meetings = await getHistoryAction()
 
@@ -19,6 +19,7 @@ export default async function HistoryPage() {
             </Link>
           </nav>
           <div className="flex items-center gap-stack-md">
+            <ThemeToggle />
             <button className="text-on-surface-variant hover:text-primary transition-colors">
               <Settings />
             </button>
@@ -39,16 +40,16 @@ export default async function HistoryPage() {
 
         <div className="space-y-4">
           {meetings.length === 0 ? (
-            <div className="p-stack-lg text-center bg-surface border border-outline-variant rounded-xl">
+            <div className="p-stack-lg text-center premium-card">
               <p className="font-body-md text-body-md text-on-surface-variant">No meetings have been saved yet.</p>
             </div>
           ) : (
             meetings.map(meeting => (
-              <div key={meeting.id} className="bg-white border border-outline-variant rounded-xl p-stack-md flex flex-col md:flex-row justify-between gap-stack-md items-start md:items-center">
+              <div key={meeting.id} className="premium-card p-stack-md flex flex-col md:flex-row justify-between gap-stack-md items-start md:items-center">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     {meeting.recommendationStatus === 'APPROVE' && <CheckCircle className="text-primary w-5 h-5" />}
-                    {meeting.recommendationStatus === 'WARN' && <AlertCircle className="text-on-tertiary-container w-5 h-5" />}
+                    {meeting.recommendationStatus === 'WARN' && <AlertCircle className="text-warning w-5 h-5" />}
                     {meeting.recommendationStatus === 'REJECT' && <XCircle className="text-error w-5 h-5" />}
                     <span className="font-label-md text-label-md font-bold">{meeting.recommendationStatus}</span>
                   </div>

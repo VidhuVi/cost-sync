@@ -6,6 +6,7 @@ import { saveMeetingAction } from '@/app/actions'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Settings, UserCircle, Users, Clock, Activity, Code, Badge, Palette, Gem, Search, X, Send, PiggyBank, History, BadgeCheck } from 'lucide-react'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export default function Home() {
   const {
@@ -55,7 +56,7 @@ export default function Home() {
       break
     case RecommendationStatus.WARN:
       roiProgressWidth = '50%'
-      roiColorClass = 'bg-on-tertiary-container' // Orange-ish
+      roiColorClass = 'bg-warning' // Amber
       break
     case RecommendationStatus.REJECT:
       roiProgressWidth = '15%'
@@ -82,6 +83,7 @@ export default function Home() {
             </Link>
           </nav>
           <div className="flex items-center gap-stack-md">
+            <ThemeToggle />
             <button className="text-on-surface-variant hover:text-primary transition-colors">
               <Settings />
             </button>
@@ -103,7 +105,7 @@ export default function Home() {
         
         <div className="bento-grid">
           {/* Main Stage: Total Cost */}
-          <div className="col-span-12 lg:col-span-8 glass-card rounded-xl p-stack-lg flex flex-col justify-center items-center relative overflow-hidden min-h-[320px]">
+          <div className="col-span-12 lg:col-span-8 premium-card p-stack-lg flex flex-col justify-center items-center relative overflow-hidden min-h-[320px]">
             <span className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant mb-unit">Current Estimated Investment</span>
             <div className="flex items-baseline gap-unit">
               <span className="font-display-lg text-display-lg text-on-surface-variant opacity-50">₹</span>
@@ -124,7 +126,7 @@ export default function Home() {
           </div>
 
           {/* Value Assessment & ROI */}
-          <div className="col-span-12 lg:col-span-4 glass-card rounded-xl p-stack-lg flex flex-col">
+          <div className="col-span-12 lg:col-span-4 premium-card p-stack-lg flex flex-col">
             <div className="flex justify-between items-center mb-stack-md">
               <h3 className="font-headline-md text-headline-md text-primary">Value Assessment</h3>
               <Activity className="text-secondary" />
@@ -145,7 +147,7 @@ export default function Home() {
                   <span className="font-label-md text-label-md text-on-secondary-container">Predicted ROI</span>
                   <span className={`font-label-md text-label-md font-bold ${
                     recommendation.status === RecommendationStatus.APPROVE ? 'text-primary' : 
-                    recommendation.status === RecommendationStatus.WARN ? 'text-on-tertiary-container' : 
+                    recommendation.status === RecommendationStatus.WARN ? 'text-warning' : 
                     recommendation.status === RecommendationStatus.REJECT ? 'text-error' : 'text-on-surface-variant'
                   }`}>
                     {recommendation.status}
@@ -162,7 +164,7 @@ export default function Home() {
           </div>
 
           {/* Add Participants Section */}
-          <div className="col-span-12 lg:col-span-6 bg-white border border-outline-variant rounded-xl p-stack-lg">
+          <div className="col-span-12 lg:col-span-6 premium-card p-stack-lg">
             <div className="flex justify-between items-center mb-stack-md">
               <h3 className="font-headline-md text-headline-md text-primary">Add Participants</h3>
             </div>
@@ -229,7 +231,7 @@ export default function Home() {
           </div>
 
           {/* Duration & Visualization */}
-          <div className="col-span-12 lg:col-span-6 bg-white border border-outline-variant rounded-xl p-stack-lg flex flex-col">
+          <div className="col-span-12 lg:col-span-6 premium-card p-stack-lg flex flex-col">
             <h3 className="font-headline-md text-headline-md text-primary mb-stack-md">Duration &amp; Analysis</h3>
             <div className="mb-stack-lg">
               <div className="flex justify-between items-center mb-unit">
@@ -271,8 +273,8 @@ export default function Home() {
         </div>
         
         {/* Secondary Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-stack-lg mt-stack-lg">
-          <div className="p-stack-md bg-surface border border-outline-variant rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-stack-lg mt-stack-lg mb-stack-lg">
+          <div className="p-stack-md premium-card">
             <div className="flex items-center gap-stack-sm mb-unit">
               <PiggyBank className="text-primary w-5 h-5" />
               <span className="font-label-md text-label-md font-bold">Optimization Tip</span>
@@ -281,14 +283,14 @@ export default function Home() {
               Reducing this meeting by 15 minutes would save approximately <span className="font-bold text-primary">₹{((totalCost / meetingContext.durationInMinutes) * 15 || 0).toFixed(0)}</span> in company time.
             </p>
           </div>
-          <div className="p-stack-md bg-surface border border-outline-variant rounded-lg">
+          <div className="p-stack-md premium-card">
             <div className="flex items-center gap-stack-sm mb-unit">
               <History className="text-primary w-5 h-5" />
               <span className="font-label-md text-label-md font-bold">Recent Comparison</span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant">Check the history tab to compare with past meetings.</p>
           </div>
-          <div className="p-stack-md bg-surface border border-outline-variant rounded-lg">
+          <div className="p-stack-md premium-card">
             <div className="flex items-center gap-stack-sm mb-unit">
               <BadgeCheck className="text-primary w-5 h-5" />
               <span className="font-label-md text-label-md font-bold">Budget Status</span>

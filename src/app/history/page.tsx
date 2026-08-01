@@ -69,7 +69,7 @@ export default async function HistoryPage() {
                   </div>
                   <div className="text-right ml-4">
                     <span className="font-display-lg text-2xl font-bold text-primary">
-                      ${meeting.totalCost.toFixed(2)}
+                      ₹{meeting.totalCost.toFixed(2)}
                     </span>
                   </div>
                 </div>

@@ -106,7 +106,7 @@ export default function Home() {
           <div className="col-span-12 lg:col-span-8 glass-card rounded-xl p-stack-lg flex flex-col justify-center items-center relative overflow-hidden min-h-[320px]">
             <span className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant mb-unit">Current Estimated Investment</span>
             <div className="flex items-baseline gap-unit">
-              <span className="font-display-lg text-display-lg text-on-surface-variant opacity-50">$</span>
+              <span className="font-display-lg text-display-lg text-on-surface-variant opacity-50">₹</span>
               <span className="font-display-lg text-[80px] font-bold text-primary leading-none transition-all duration-500 ease-out">
                 {totalCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
@@ -173,7 +173,7 @@ export default function Home() {
               >
                 <Code className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Engineer</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">$150/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹150/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
@@ -181,7 +181,7 @@ export default function Home() {
               >
                 <Badge className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Manager</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">$200/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹200/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
@@ -189,7 +189,7 @@ export default function Home() {
               >
                 <Palette className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Designer</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">$140/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹140/hr</span>
               </button>
               <button 
                 className="flex flex-col items-start p-stack-md border border-outline-variant rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 ease-out text-left" 
@@ -197,7 +197,7 @@ export default function Home() {
               >
                 <Gem className="text-primary mb-unit w-6 h-6" />
                 <span className="font-label-md text-label-md font-bold">Executive</span>
-                <span className="font-body-sm text-body-sm text-on-surface opacity-80">$450/hr</span>
+                <span className="font-body-sm text-body-sm text-on-surface opacity-80">₹450/hr</span>
               </button>
             </div>
             <div className="relative">
@@ -217,7 +217,7 @@ export default function Home() {
                   <div key={p.id} className="flex justify-between items-center p-stack-sm bg-surface rounded-lg border border-outline-variant/30 animate-in fade-in slide-in-from-left-4 duration-500 ease-out">
                     <div className="flex items-center gap-unit">
                         <span className="font-label-md text-label-md font-bold">{p.name}</span>
-                        <span className="font-body-sm text-body-sm text-on-surface-variant">${p.hourlyRate}/hr</span>
+                        <span className="font-body-sm text-body-sm text-on-surface-variant">₹{p.hourlyRate}/hr</span>
                     </div>
                     <button onClick={() => removeAttendee(p.id)} className="text-error/60 hover:text-error transition-colors">
                       <X className="w-5 h-5" />
@@ -278,7 +278,7 @@ export default function Home() {
               <span className="font-label-md text-label-md font-bold">Optimization Tip</span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Reducing this meeting by 15 minutes would save approximately <span className="font-bold text-primary">${((totalCost / meetingContext.durationInMinutes) * 15 || 0).toFixed(0)}</span> in company time.
+              Reducing this meeting by 15 minutes would save approximately <span className="font-bold text-primary">₹{((totalCost / meetingContext.durationInMinutes) * 15 || 0).toFixed(0)}</span> in company time.
             </p>
           </div>
           <div className="p-stack-md bg-surface border border-outline-variant rounded-lg">
@@ -293,7 +293,7 @@ export default function Home() {
               <BadgeCheck className="text-primary w-5 h-5" />
               <span className="font-label-md text-label-md font-bold">Budget Status</span>
             </div>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">Allocated department budget: $12,500/mo. Monitor expenses strictly.</p>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">Allocated department budget: ₹12,500/mo. Monitor expenses strictly.</p>
           </div>
         </div>
       </main>
